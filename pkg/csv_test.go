@@ -6,8 +6,8 @@ import (
 	"testing"
 )
 
-func createtemp() string {
-	f, err := os.CreateTemp("", "test")
+func createtemp(filename string) string {
+	f, err := os.CreateTemp("", filename)
 	if err != nil {
 		fmt.Print(err)
 	}
@@ -15,10 +15,10 @@ func createtemp() string {
 }
 
 func TestDeleteFile(t *testing.T) {
-	file := createtemp()
+	file := createtemp("test")
 
 	DeleteFile(file)
-	b, err := checkExist(file)
+	b, err := CheckExist(file)
 	if err != nil {
 		t.Error(err)
 	}

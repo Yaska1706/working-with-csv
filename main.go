@@ -20,7 +20,7 @@ func main() {
 	errCheck(err)
 	if b {
 		jsonResult := convertCSVtoJSON(filename)
-		fmt.Print(jsonResult)
+		pkg.SaveToJsonFile(jsonResult)
 	} else {
 
 		pkg.WriteToCSV(filename, data)
