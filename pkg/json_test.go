@@ -2,6 +2,7 @@ package pkg
 
 import (
 	"encoding/json"
+	"fmt"
 	"os"
 	"testing"
 )
@@ -19,7 +20,15 @@ func TestSaveToJsonFile(t *testing.T) {
 	}
 
 	SaveToJsonFile(string(data))
+	tempdata, err := os.ReadFile("employee.json")
+	if err != nil {
+		fmt.Print(err)
+	}
+	if string(tempdata) != string(data) {
+		t.Errorf("not equal , wanted %q got %q", string(tempdata), string(data))
+	}
 
+	os.Remove("employee.json")
 	os.Remove(file)
 
 }
