@@ -28,7 +28,9 @@ func TestSaveToJsonFile(t *testing.T) {
 		t.Errorf("not equal , wanted %q got %q", string(tempdata), string(data))
 	}
 
-	os.Remove("employee.json")
+	if err := os.Remove("employee.json"); err != nil {
+		fmt.Print(err)
+	}
 	os.Remove(file)
 
 }

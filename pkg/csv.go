@@ -6,6 +6,8 @@ import (
 	"fmt"
 	"log"
 	"os"
+
+	"golang.org/x/text/encoding/unicode"
 )
 
 type employee struct {
@@ -24,7 +26,7 @@ func GetDataFromCSV(filename string) [][]string {
 	fmt.Println("CSV file opened")
 	defer csvFile.Close()
 
-	csvLines, err := csv.NewReader(csvFile).ReadAll()
+	csvLines, err := csv.NewReader(unicode.UTF8.NewDecoder().Reader(csvFile)).ReadAll()
 	if err != nil {
 		fmt.Println("failed to read csv", err)
 		return nil
